@@ -23,12 +23,13 @@ const Campground = mongoose.model('Campground', campgroundSchema);
 app.post('/campgrounds', (req, res) => {
   const text = req.body.name;
   const url = req.body.image;
-  const newCampground = { text, url };
+  const desc = req.body.description;
+  const newCampground = { text, url, description: desc };
   Campground.create(newCampground, (err, newlyCreated) => {
     if (err) {
       console.log(err);
     } else {
-      res.redirect('/campgrounds');
+      res.redirect('campgrounds');
     }
   });
 });
@@ -50,6 +51,12 @@ app.get('/campgrounds', (req, res) => {
 
 // SHOW - expanded view of campgrounds
 app.get('/campgrounds/:id', (req, res) => {
-  res.render('show');
+  Campground.findById(req.params.id, (err, foundCampgrounds) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('show', { campground: foundCampgrounds });
+    }
+  });
 });
 app.listen(3000, () => console.log('Example app listening on port 3000!'));

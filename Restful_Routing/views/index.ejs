@@ -1,0 +1,15 @@
+<%  include ./partials/header.ejs %>
+<h1>Yo</h1>
+<% blogs.forEach(blog => {  %>
+    <div>
+        <h2>
+            <%= blog.title %>
+        </h2>
+        <img src="<%= blog.image %>" width="200">
+        <span>
+            <%= blog.created %>
+        </span>
+        <p><%= blog.body.substring(0,100) %>...</p>
+        <a href="/blogs/<%= blog._id %>" class="ui button">Read More</a>
+        <% }); %>
+    <% include ./partials/footer.ejs  %>

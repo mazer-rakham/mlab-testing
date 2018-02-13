@@ -19,8 +19,11 @@
                     <%= campground.text; %>
                         <br />
                         <img src="<%=campground.url%>" class="img-responsive" alt="">
+                        <p>
+                            <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">More Info</a>
+                        </p>
                 </div>
-            <% }); %>
+                <% }); %>
         </div>
     </div>
     <% include partials/footer %>
