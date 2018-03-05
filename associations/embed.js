@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
   name: String,
   posts: [postSchema],
 });
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema, 'newuser');
 const newUser = new User({
   email: 'yo_momma@dipshit.com',
   name: 'dipshit',
