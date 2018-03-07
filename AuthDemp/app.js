@@ -21,6 +21,7 @@ app.use(require('express-session')({
 
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -50,4 +51,18 @@ app.post('/register', (req, res) => {
     });
   });
 });
+
+// ============ login route
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/secret',
+  failureRedirect: '/login',
+}), (req, res) => {
+
+});
+
+//= ====== logout route
 app.listen(3000, () => console.log('Example app listening on port 3000!'));
