@@ -1,12 +1,14 @@
 const express = require('express');
-
-const app = express();
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const Campground = require('./models/campgrounds');
 const Comment = require('./models/comment');
+const User = require('./models/user');
 const seedDB = require('./seeds.js');
 
+const app = express();
 seedDB();
 mongoose.connect('mongodb://testing:Ayumi9822@ds225608.mlab.com:25608/web-dev-course');
 app.use(bodyParser.urlencoded({ extended: true }));
